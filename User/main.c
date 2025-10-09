@@ -1,7 +1,9 @@
-#include "stdint.h"
+#include "stm32f10x.h"
 
 int main(void){
-*(uint32_t *)(0x40021000 + 0x18) = 4;
-*(uint32_t *)(0x40010800 + 0x00) = 3;
-*(uint32_t *)(0x40010800 + 0x0c) = 0xfffe;
+
+RCC->APB1ENR = 4;
+GPIOA->CRL = 0X33;
+GPIOA->ODR = 0xfffe;
+
 while (1);}

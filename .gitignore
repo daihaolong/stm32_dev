@@ -53,11 +53,7 @@ dkms.conf
 
 # debug information files
 *.dwo
-.vscode/uv4.log
-.vscode/uv4.log.lock
-Objects/led_register.build_log.htm
-Objects/led_register.htm
-Objects/led_register_Target 1.dep
-Objects/led_register.axf
-Objects/main.crf
-.vscode/keil-assistant.log
+Objects/*
+.vscode/*
+*.Administrator
+

@@ -60,3 +60,4 @@ Objects/led_register.htm
 Objects/led_register_Target 1.dep
 Objects/led_register.axf
 Objects/main.crf
+.vscode/keil-assistant.log

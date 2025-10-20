@@ -7,7 +7,7 @@ void Delay_s(uint16_t s);
 int main(void){
 
 // 开启PA的时钟
-RCC->APB1ENR |= RCC_APB2ENR_IOPAEN;
+RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
 
 
 // 关闭LED1 PA0 

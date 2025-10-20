@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\User;.\Hardware\Led</IncludePath>
+              <IncludePath>.\Start;.\User;.\Hardware\Led;.\Hardware\Key</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -438,6 +438,16 @@
               <FileName>led.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Hardware\Led\led.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware\Key</GroupName>
+          <Files>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\Key\key.c</FilePath>
             </File>
           </Files>
         </Group>

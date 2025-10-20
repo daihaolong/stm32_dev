@@ -6,6 +6,7 @@
                 "d:\\01workspace\\project_stm32\\stm32_dev\\Start",
                 "d:\\01workspace\\project_stm32\\stm32_dev\\User",
                 "d:\\01workspace\\project_stm32\\stm32_dev\\Hardware\\Led",
+                "d:\\01workspace\\project_stm32\\stm32_dev\\Hardware\\Key",
                 "D:\\02programs\\Keil_v5\\ARM\\ARMCC\\include"
             ],
             "defines": [

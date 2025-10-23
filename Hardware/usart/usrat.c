@@ -31,7 +31,7 @@ void USART_Init(void){
 }
 
 void USART_SendChar(uint8_t ch){
-    //判断SR_TXE是否为空，为1 就是空，为0还没空
+    //判断SR_TXE是否为空，为1发完了，为0还没发完
     while ((USART1->SR & USART_SR_TXE) == 0)
     {
         /* code */
@@ -45,6 +45,12 @@ uint8_t USART_ReceiveChar(void){
     while ((USART1->SR & USART_SR_RXNE) == 0)
     {
         /* code */
+        if (USART1->SR & USART_SR_IDLE)
+        {
+            /* code */
+            return 0;
+        }
+        
     };
     return USART1->DR;
 }
@@ -63,22 +69,45 @@ void USART_SendString(uint8_t *string, uint8_t lenth){
 
 }
 
-void  USART_ReceiveString(uint8_t buffer[], uint8_t * lenth){
+void USART_ReceiveString(uint8_t buffer[], uint8_t * lenth){
     
-    uint8_t i = 0;
-    while (1)
+    /*
+     *
+     USART_SR_IDLE
+     0：没有检测到空闲总线；
+     1：检测到空闲总线。 
+     * 
+     */
+    uint8_t i=0;
+    while ((USART1->SR & USART_SR_IDLE) == 0)
     {
-        while ((USART1->SR & USART_SR_RXNE) == 0){
+        /* code */
+        buffer[i++] = USART_ReceiveChar();
 
-            if (USART1->SR & USART_SR_IDLE)
-            {
-                /* code */
-                *lenth = i;
-                return;
-            }
-            
-        }
-        buffer[i++] = USART1->DR;
     }
+    USART1->SR;
+    USART1->DR;
+    *lenth = --i;
     
+
 }
+
+// void  USART_ReceiveString(uint8_t buffer[], uint8_t * lenth){
+    
+//     uint8_t i = 0;
+//     while (1)
+//     {
+//         while ((USART1->SR & USART_SR_RXNE) == 0){
+
+//             if (USART1->SR & USART_SR_IDLE)
+//             {
+//                 /* code */
+//                 *lenth = i;
+//                 return;
+//             }
+            
+//         }
+//         buffer[i++] = USART1->DR;
+//     }
+    
+// }

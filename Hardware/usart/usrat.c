@@ -41,10 +41,44 @@ void USART_SendChar(uint8_t ch){
 }
 
 uint8_t USART_ReceiveChar(void){
-//判断SR_RXNE是否为空，为1就是非空，为0还没空
+//判断SR_RXNE是否为空，1收到数据可以读出，0数据没有收到
     while ((USART1->SR & USART_SR_RXNE) == 0)
     {
         /* code */
     };
     return USART1->DR;
+}
+
+void USART_SendString(uint8_t *string, uint8_t lenth){
+
+
+    for (uint8_t i = 0; i < lenth; i++)
+    {
+        /* code */
+        USART_SendChar(string[i]);
+    }
+    
+    
+    
+
+}
+
+void  USART_ReceiveString(uint8_t buffer[], uint8_t * lenth){
+    
+    uint8_t i = 0;
+    while (1)
+    {
+        while ((USART1->SR & USART_SR_RXNE) == 0){
+
+            if (USART1->SR & USART_SR_IDLE)
+            {
+                /* code */
+                *lenth = i;
+                return;
+            }
+            
+        }
+        buffer[i++] = USART1->DR;
+    }
+    
 }

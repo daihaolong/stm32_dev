@@ -1,14 +1,16 @@
 #include "usrat.h"
 #include "delay.h"
-
+#include "string.h"
+uint8_t lenth;
+uint8_t buffer[100];
 int main(void){
-uint8_t ch;
+
 USART_Init();
-USART_SendChar('c');
+
 while (1){
 
-    ch = USART_ReceiveChar();
-    USART_SendChar(ch);
+    USART_ReceiveString(buffer, &lenth);
+    USART_SendString(buffer, lenth);
     
 };
 

@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\User;.\Hardware\Led;.\Hardware\Key</IncludePath>
+              <IncludePath>.\Start;.\User;.\Hardware\Led;.\Hardware\Key;.\Hardware\usart</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -448,6 +448,16 @@
               <FileName>key.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Hardware\Key\key.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Hardware\usart</GroupName>
+          <Files>
+            <File>
+              <FileName>usrat.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\usart\usrat.c</FilePath>
             </File>
           </Files>
         </Group>

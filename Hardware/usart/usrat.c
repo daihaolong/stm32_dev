@@ -1,5 +1,5 @@
 #include "usrat.h"
-
+uint8_t receive_complete=0;
 void USART_Init(void){
     //配置时钟
     RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;
@@ -26,6 +26,14 @@ void USART_Init(void){
     // 其他配置 
     USART1->CR1 &= ~USART_CR1_M;
     USART1->CR1 &= ~USART_CR1_PCE;
+
+    // 使能中断
+    USART1->CR1 |= (USART_CR1_RXNEIE | USART_CR1_IDLEIE);
+
+    // NVIC配置
+    NVIC_SetPriorityGrouping(3);
+    NVIC_SetPriority(USART1_IRQn, 3);
+    NVIC_EnableIRQ(USART1_IRQn);
     
     
 }
@@ -40,20 +48,6 @@ void USART_SendChar(uint8_t ch){
     
 }
 
-uint8_t USART_ReceiveChar(void){
-//判断SR_RXNE是否为空，1收到数据可以读出，0数据没有收到
-    while ((USART1->SR & USART_SR_RXNE) == 0)
-    {
-        /* code */
-        if (USART1->SR & USART_SR_IDLE)
-        {
-            /* code */
-            return 0;
-        }
-        
-    };
-    return USART1->DR;
-}
 
 void USART_SendString(uint8_t *string, uint8_t lenth){
 
@@ -69,45 +63,31 @@ void USART_SendString(uint8_t *string, uint8_t lenth){
 
 }
 
-void USART_ReceiveString(uint8_t buffer[], uint8_t * lenth){
-    
-    /*
-     *
-     USART_SR_IDLE
-     0：没有检测到空闲总线；
-     1：检测到空闲总线。 
-     * 
-     */
-    uint8_t i=0;
-    while ((USART1->SR & USART_SR_IDLE) == 0)
+
+
+//中断服务程序
+void USART1_IRQHandler(void){
+
+    if (USART1->SR & USART_SR_RXNE)
     {
-        /* code */
-        buffer[i++] = USART_ReceiveChar();
+        /* 接收完成一个字符 */
+        buffer[lenth++] = USART1->DR;
 
     }
-    USART1->SR;
-    USART1->DR;
-    *lenth = --i;
+    else if (USART1->SR & USART_SR_IDLE)
+    {   //字符串整体接收完成
+        USART1->DR;   //清除idle标志位
+        receive_complete = 1;
+    }
+
     
 
 }
 
-// void  USART_ReceiveString(uint8_t buffer[], uint8_t * lenth){
-    
-//     uint8_t i = 0;
-//     while (1)
-//     {
-//         while ((USART1->SR & USART_SR_RXNE) == 0){
 
-//             if (USART1->SR & USART_SR_IDLE)
-//             {
-//                 /* code */
-//                 *lenth = i;
-//                 return;
-//             }
-            
-//         }
-//         buffer[i++] = USART1->DR;
-//     }
-    
-// }
+int fputc(int c, FILE *file)
+{
+    USART_SendChar((uint8_t) c);
+    return c;
+}
+

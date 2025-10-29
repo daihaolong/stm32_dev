@@ -7,6 +7,8 @@
 ".\objects\led.o"
 ".\objects\key.o"
 ".\objects\usrat.o"
+".\objects\m24c02.o"
+".\objects\i2c.o"
 --library_type=microlib --strict --scatter ".\Objects\led_register.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

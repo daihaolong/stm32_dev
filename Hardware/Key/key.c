@@ -1,5 +1,5 @@
 #include "key.h"
-
+extern LED_PLAN_STATUS led_plans_status;
 void Key_Init()
 {
     // 开启时钟
@@ -37,7 +37,8 @@ void EXTI15_10_IRQHandler(void ){
     if ((GPIOF->IDR & GPIO_IDR_IDR10)!=0)
     {
         /* code */
-        LED_Toggle(LED1);
+        // LED_Toggle(LED1);
+        led_plans_status = (LED_PLAN_STATUS)((led_plans_status + 1) % 3) ;
     }
     
 

@@ -6,6 +6,14 @@
 #include "led.h"
 void Key_Init(void);
 
+typedef enum 
+{
+    none_plan = -1,
+    plan1,
+    plan2,
+    plan3
+} LED_PLAN_STATUS;
+
 #endif /* __KEY_H__ */
 
 

@@ -14,7 +14,7 @@ void Delay_us(uint16_t us){
         /* code */
     }
     // 关闭定时器
-    SysTick->CTRL &= ~SysTick_CTRL_ENABLE;
+    // SysTick->CTRL &= ~SysTick_CTRL_ENABLE;
     
 }
 

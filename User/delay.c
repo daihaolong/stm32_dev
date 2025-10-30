@@ -65,7 +65,7 @@ uint16_t count = 0;
 void SysTick_Handler(){
 
     count++;
-    if (count == 500)
+    if (count == 1000)
     {
         /* code */
         count = 0;

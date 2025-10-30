@@ -1,5 +1,5 @@
 #include "key.h"
-extern LED_PLAN_STATUS led_plans_status;
+LED_PLAN_STATUS led_plans_status;
 void Key_Init()
 {
     // 开启时钟

@@ -10,6 +10,7 @@
                 "d:\\01workspace\\project_stm32\\stm32_dev\\Hardware\\usart",
                 "d:\\01workspace\\project_stm32\\stm32_dev\\Hardware\\I2C",
                 "d:\\01workspace\\project_stm32\\stm32_dev\\Interface\\EEPROM",
+                "d:\\01workspace\\project_stm32\\stm32_dev\\Hardware\\TIM",
                 "D:\\02programs\\Keil_v5\\ARM\\ARMCC\\include"
             ],
             "defines": [

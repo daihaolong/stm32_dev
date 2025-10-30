@@ -1,5 +1,7 @@
 #include "usrat.h"
 uint8_t receive_complete=0;
+uint8_t buffer[100];
+uint8_t lenth;
 void USART_Init(void){
     //配置时钟
     RCC->APB2ENR |= RCC_APB2ENR_IOPAEN;

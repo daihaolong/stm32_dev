@@ -1,5 +1,5 @@
 #include "delay.h"
-
+#include "led.h"
 void Delay_us(uint16_t us){
 
     //1. 装载值
@@ -44,4 +44,34 @@ void Delay_s(uint16_t s){
     
     
 
+}
+
+void SysTick_init(void){
+
+    SysTick->CTRL = 0x07;
+    SysTick->LOAD = 72*1000 - 1;   // ms
+    // NVIC_SetPriorityGrouping(3);
+    // NVIC_SetPriority(SysTick_IRQn, 3);
+    // NVIC_EnableIRQ(SysTick_IRQn);
+    
+    
+   
+    
+
+}
+
+uint16_t count = 0;
+
+void SysTick_Handler(){
+
+    count++;
+    if (count == 500)
+    {
+        /* code */
+        count = 0;
+
+        LED_Toggle(LED1);
+    }
+    
+    
 }
